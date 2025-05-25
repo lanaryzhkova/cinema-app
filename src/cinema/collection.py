@@ -55,6 +55,7 @@ collections: dict[str, Collection] = {}
 
 
 def create_collection() -> None:
+    """Создает коллекцию с пользовательским названием"""
     print('### Создание коллекции ###')
 
     title = input('Введите название: ')
@@ -63,6 +64,7 @@ def create_collection() -> None:
 
 
 def delete_collection() -> None:
+    """Удаляет коллекцию"""
     print('### Удаление коллекции ###')
 
     if not collections:
@@ -76,6 +78,7 @@ def delete_collection() -> None:
 
 
 def show_list_all_collections() -> None:
+    """Выводит названия всех коллекций"""
     if not collections:
         print("Список коллекций пуст.")
         return
@@ -86,6 +89,7 @@ def show_list_all_collections() -> None:
 
 
 def show_collection() -> None:
+    """Запрашивает название коллекции и выводит список фильмов в этой коллекции"""
     title = input('Введите название коллекции: ')
     collection = collections.get(title)
     if collection:
@@ -96,6 +100,7 @@ def show_collection() -> None:
 
 
 def add_movie_into_collection() -> None:
+    """Запрашивает название коллекции и выбранный фильм добавляет в неё"""
     title = input('Введите название коллекции: ')
     collection = collections.get(title)
     if collection:
@@ -112,6 +117,7 @@ def add_movie_into_collection() -> None:
 
 
 def remove_movie_from_collection() -> None:
+    """Запрашивает название коллекции и выбранный фильм удаляет из неё"""
     title = input('Введите название коллекции: ')
     collection = collections.get(title)
     if collection:

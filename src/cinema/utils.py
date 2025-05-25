@@ -1,4 +1,5 @@
 def choose_from_list(options: list[any], prompt: str) -> str:
+    """Выводит список опций и описание выбора, принимает номер опции """
     print(prompt)
     for i, option in enumerate(options, start=1):
         name = option.value if hasattr(option, 'value') else str(option)

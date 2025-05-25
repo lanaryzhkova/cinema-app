@@ -21,6 +21,7 @@ menu_items_col2 = [
 
 
 def main_menu():
+    """Выводит меню и запрашивает номер пункта меню"""
     while True:
         print("### Меню ###")
         max_len = max(len(menu_items_col1), len(menu_items_col2))

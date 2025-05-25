@@ -18,6 +18,7 @@ movies: dict[str, Movie] = {}
 
 
 def add_movie() -> None:
+    """Добавление фильма в список с указанием его параметров"""
     print('### Добавление фильма ###')
 
     title = input('Введите название: ')
@@ -30,6 +31,7 @@ def add_movie() -> None:
 
 
 def delete_movie() -> None:
+    """Удаление фильма из списка"""
     print('### Удаление фильма ###')
 
     if not movies:
@@ -43,6 +45,7 @@ def delete_movie() -> None:
 
 
 def input_year() -> int:
+    """Запрашивает ввод года и возвращает его как целое число"""
     while True:
         try:
             return int(input('Введите год производства: '))
@@ -51,6 +54,7 @@ def input_year() -> int:
 
 
 def show_list_all_movies() -> None:
+    """Выводит список всех фильмов"""
     if not movies:
         print("Список фильмов пуст.")
         return
@@ -61,6 +65,7 @@ def show_list_all_movies() -> None:
 
 
 def search_movies() -> None:
+    """Фильтрует и Выводит список фильмов по выбранному критерию"""
     if not movies:
         print("Список фильмов пуст.")
         return
@@ -88,3 +93,4 @@ def search_movies() -> None:
             print(movie)
     else:
         print("Фильмы по заданному критерию не найдены.")
+
