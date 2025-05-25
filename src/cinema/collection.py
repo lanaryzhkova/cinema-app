@@ -31,6 +31,26 @@ class Collection:
             for movie in self.movies.values():
                 print(f"- {movie}")
 
+    def __iter__(self) -> Iterator[Movie]:
+        return MovieIterator(list(self.movies.values()))
+
+
+class MovieIterator:
+    def __init__(self, movies_list: list[Movie]):
+        self._movies = movies_list
+        self._index = 0
+
+    def __next__(self) -> Movie:
+        if self._index < len(self._movies):
+            movie = self._movies[self._index]
+            self._index += 1
+            return movie
+        else:
+            raise StopIteration
+
+    def __iter__(self):
+        return self
+
 
 collections: dict[str, Collection] = {}
 
@@ -56,3 +76,5 @@ def delete_collection() -> None:
     selected_collection = choose_from_list(collections_list, "Выберите коллекцию для удаления:")
     del collections[selected_collection.title]
     print(f'Коллекция "{selected_collection.title}" удалена.')
+
+
