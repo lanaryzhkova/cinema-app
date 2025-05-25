@@ -17,7 +17,7 @@ class Movie:
 movies: dict[str, Movie] = {}
 
 
-def add_movie():
+def add_movie() -> Movie:
     print('### Добавление фильма ###')
 
     title = input('Введите название: ')
@@ -28,8 +28,10 @@ def add_movie():
     movie = Movie(title, year, country, genre)
     movies[movie.title] = movie
 
+    return movie
 
-def delete_movie():
+
+def delete_movie() -> None:
     print('### Удаление фильма ###')
 
     if not movies:
@@ -50,7 +52,7 @@ def input_year() -> int:
             print('Ошибка: нужно ввести число. Попробуйте снова.')
 
 
-def choose_from_list(options: list[any], prompt: str) -> any:
+def choose_from_list(options: list[any], prompt: str) -> None:
     print(prompt)
     for i, option in enumerate(options, start=1):
         name = option.value if hasattr(option, 'value') else str(option)
@@ -64,3 +66,11 @@ def choose_from_list(options: list[any], prompt: str) -> any:
         print("Неверный ввод, попробуйте ещё раз.")
 
 
+def show_list_all_movies() -> None:
+    if not movies:
+        print("Список фильмов пуст.")
+        return
+    else:
+        print('Список фильмов:')
+        for i, movie in enumerate(movies.values(), start=1):
+            print(f'{i}. {movie}')
