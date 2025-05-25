@@ -1,6 +1,5 @@
 from typing import Iterator
 from movie import *
-from movie import choose_from_list
 
 
 class Collection:
@@ -55,7 +54,7 @@ class MovieIterator:
 collections: dict[str, Collection] = {}
 
 
-def create_collection() -> Collection:
+def create_collection() -> None:
     print('### Создание коллекции ###')
 
     title = input('Введите название: ')
@@ -81,7 +80,7 @@ def show_list_all_collections() -> None:
         print("Список коллекций пуст.")
         return
     else:
-        print('Список коллекций:')
+        print('### Список коллекций ###')
         for i, collection in enumerate(collections.values(), start=1):
             print(f'{i}. {collection.title}')
 
