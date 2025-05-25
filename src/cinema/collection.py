@@ -1,5 +1,5 @@
 from typing import Iterator
-from movie import Movie
+from movie import *
 from movie import choose_from_list
 
 
@@ -59,10 +59,8 @@ def create_collection() -> Collection:
     print('### Создание коллекции ###')
 
     title = input('Введите название: ')
-
     collection = Collection(title)
     collections[collection.title] = collection
-    return collection
 
 
 def delete_collection() -> None:
@@ -72,9 +70,60 @@ def delete_collection() -> None:
         print("Список коллекций пуст.")
         return
 
-    collections_list = list(collections.values())
-    selected_collection = choose_from_list(collections_list, "Выберите коллекцию для удаления:")
-    del collections[selected_collection.title]
-    print(f'Коллекция "{selected_collection.title}" удалена.')
+    collections_list = list(collections.keys())
+    selected_title = choose_from_list(collections_list, "Выберите коллекцию для удаления:")
+    del collections[selected_title]
+    print(f'Коллекция "{selected_title}" удалена.')
 
 
+def show_list_all_collections() -> None:
+    if not collections:
+        print("Список коллекций пуст.")
+        return
+    else:
+        print('Список коллекций:')
+        for i, collection in enumerate(collections.values(), start=1):
+            print(f'{i}. {collection.title}')
+
+
+def show_collection() -> None:
+    title = input('Введите название коллекции: ')
+    collection = collections.get(title)
+    if collection:
+        print(f'Коллекция: {collection.title}')
+        collection.list_movies()
+    else:
+        print('Коллекция с таким названием не найдена')
+
+
+def add_movie_into_collection() -> None:
+    title = input('Введите название коллекции: ')
+    collection = collections.get(title)
+    if collection:
+        if not movies:
+            print("Список фильмов пуст, нужно добавить")
+            return
+        else:
+            print('Список фильмов:')
+            movies_list = list(movies.values())
+            selected_movie = choose_from_list(movies_list, "Выберите фильм:")
+            collection.add_movie(movies[selected_movie.title])
+    else:
+        print('Коллекция с таким названием не найдена')
+
+
+def remove_movie_from_collection() -> None:
+    title = input('Введите название коллекции: ')
+    collection = collections.get(title)
+    if collection:
+        if not movies:
+            print("Список фильмов пуст, нужно добавить")
+            return
+        else:
+            print('Список фильмов:')
+            movies_list = list(movies.values())
+            selected_movie = choose_from_list(movies_list, "Выберите фильм:")
+            print(selected_movie)
+            collection.remove_movie(selected_movie.title)
+    else:
+        print('Коллекция с таким названием не найдена')
