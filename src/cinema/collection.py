@@ -1,6 +1,6 @@
 from typing import Iterator
 from movie import *
-
+from utils import *
 
 class Collection:
     def __init__(self, title: str) -> None:

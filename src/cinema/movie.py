@@ -1,4 +1,5 @@
 from enums import Country, Genre
+from utils import *
 
 
 class Movie:
