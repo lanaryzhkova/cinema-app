@@ -13,11 +13,10 @@ class Movie:
         return f"{self.title} ({self.year}, {self.country.value}, {self.genre.value})"
 
 
-# Словарь фильмов
 movies: dict[str, Movie] = {}
 
 
-def add_movie() -> Movie:
+def add_movie() -> None:
     print('### Добавление фильма ###')
 
     title = input('Введите название: ')
@@ -27,8 +26,6 @@ def add_movie() -> Movie:
 
     movie = Movie(title, year, country, genre)
     movies[movie.title] = movie
-
-    return movie
 
 
 def delete_movie() -> None:
@@ -71,12 +68,12 @@ def show_list_all_movies() -> None:
         print("Список фильмов пуст.")
         return
     else:
-        print('Список фильмов:')
+        print('### Список фильмов ###')
         for i, movie in enumerate(movies.values(), start=1):
             print(f'{i}. {movie}')
 
 
-def search_movies():
+def search_movies() -> None:
     if not movies:
         print("Список фильмов пуст.")
         return
@@ -104,4 +101,3 @@ def search_movies():
             print(movie)
     else:
         print("Фильмы по заданному критерию не найдены.")
-
