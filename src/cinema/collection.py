@@ -1,4 +1,6 @@
+from typing import Iterator
 from movie import Movie
+from movie import choose_from_list
 
 
 class Collection:
@@ -28,3 +30,29 @@ class Collection:
             print(f'Фильмы в коллекции "{self.title}":')
             for movie in self.movies.values():
                 print(f"- {movie}")
+
+
+collections: dict[str, Collection] = {}
+
+
+def create_collection() -> Collection:
+    print('### Создание коллекции ###')
+
+    title = input('Введите название: ')
+
+    collection = Collection(title)
+    collections[collection.title] = collection
+    return collection
+
+
+def delete_collection() -> None:
+    print('### Удаление коллекции ###')
+
+    if not collections:
+        print("Список коллекций пуст.")
+        return
+
+    collections_list = list(collections.values())
+    selected_collection = choose_from_list(collections_list, "Выберите коллекцию для удаления:")
+    del collections[selected_collection.title]
+    print(f'Коллекция "{selected_collection.title}" удалена.')
